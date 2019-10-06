@@ -10,3 +10,4 @@ This project it's result of a challenge to develop an application with a very sh
 1. Create a github organization and repository;
 2. Add .gitignore and README.md;
 3. Initialize the Intellij Project;
+
