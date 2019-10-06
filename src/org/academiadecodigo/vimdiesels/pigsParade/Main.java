@@ -1,4 +1,4 @@
-package org.academiadecodigo.vimdiesels.pigParade;
+package org.academiadecodigo.vimdiesels.pigsParade;
 
 public class Main {
 
