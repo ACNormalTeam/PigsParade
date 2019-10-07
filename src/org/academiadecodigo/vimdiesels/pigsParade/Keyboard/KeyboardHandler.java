@@ -1,14 +1,13 @@
-package org.academiadecodigo.vimdiesels.pigsParade.Input;
+package org.academiadecodigo.vimdiesels.pigsParade.Keyboard;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-public class snakeKeyboardHandler implements KeyboardHandler {
+public class KeyboardHandler implements org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler {
 
     private Rectangle square;
 
-    public snakeKeyboardHandler(Rectangle square) {
+    public KeyboardHandler(Rectangle square) {
         this.square = square;
     }
 
