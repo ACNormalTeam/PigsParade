@@ -1,7 +1,7 @@
-package org.academiadecodigo.vimdiesels.pigsParade;
+package org.academiadecodigo.vimdiesels.pigsparade;
 
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.vimdiesels.pigsParade.Grid.DirectionControl;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.DirectionControl;
 
 public class SnakeKeyboardHandler implements org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler {
 

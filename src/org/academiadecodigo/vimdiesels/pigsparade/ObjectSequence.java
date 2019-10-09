@@ -1,8 +1,8 @@
-package org.academiadecodigo.vimdiesels.pigsParade;
+package org.academiadecodigo.vimdiesels.pigsparade;
 
-import org.academiadecodigo.vimdiesels.pigsParade.Grid.DirectionControl;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.DirectionControl;
 
-import static org.academiadecodigo.vimdiesels.pigsParade.Grid.DirectionControl.*;
+import static org.academiadecodigo.vimdiesels.pigsparade.grid.DirectionControl.*;
 
 public class ObjectSequence {
 

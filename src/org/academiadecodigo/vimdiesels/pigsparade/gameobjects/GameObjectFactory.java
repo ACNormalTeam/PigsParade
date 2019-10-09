@@ -1,6 +1,6 @@
-package org.academiadecodigo.vimdiesels.pigsParade.GameObjects;
+package org.academiadecodigo.vimdiesels.pigsparade.gameobjects;
 
-import org.academiadecodigo.vimdiesels.pigsParade.GameObjects.Types.*;
+import org.academiadecodigo.vimdiesels.pigsparade.gameobjects.types.*;
 
 public class GameObjectFactory {
 

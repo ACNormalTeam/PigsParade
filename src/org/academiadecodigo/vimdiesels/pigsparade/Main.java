@@ -1,6 +1,6 @@
-package org.academiadecodigo.vimdiesels.pigsParade;
+package org.academiadecodigo.vimdiesels.pigsparade;
 
-import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.Grid;
 
 public class Main {
 

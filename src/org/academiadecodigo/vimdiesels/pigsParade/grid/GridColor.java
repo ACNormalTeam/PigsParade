@@ -1,4 +1,4 @@
-package org.academiadecodigo.vimdiesels.pigsParade.grid;
+package org.academiadecodigo.vimdiesels.pigsparade.grid;
 
 public enum GridColor {
 

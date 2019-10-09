@@ -1,4 +1,4 @@
-package org.academiadecodigo.vimdiesels.pigsParade.Score;
+package org.academiadecodigo.vimdiesels.pigsparade.score;
 
 public class ScoreLogic {
 

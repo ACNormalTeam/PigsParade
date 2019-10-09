@@ -1,9 +1,9 @@
-package org.academiadecodigo.vimdiesels.pigsParade.grid;
+package org.academiadecodigo.vimdiesels.pigsparade.grid;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
-import org.academiadecodigo.vimdiesels.pigsParade.grid.position.Position;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.position.GridPosition;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.position.Position;
 
 public class Grid {
 

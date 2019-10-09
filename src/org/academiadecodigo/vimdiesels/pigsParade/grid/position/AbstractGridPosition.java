@@ -1,9 +1,9 @@
-package org.academiadecodigo.vimdiesels.pigsParade.grid.position;
+package org.academiadecodigo.vimdiesels.pigsparade.grid.position;
 
 
-import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
-import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
-import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.Grid;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.GridColor;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.GridDirection;
 
 public abstract class AbstractGridPosition implements GridPosition {
 

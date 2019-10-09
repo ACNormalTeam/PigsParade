@@ -1,4 +1,4 @@
-package org.academiadecodigo.vimdiesels.pigsParade.Grid;
+package org.academiadecodigo.vimdiesels.pigsparade.grid;
 
 public enum DirectionControl {
     UP,

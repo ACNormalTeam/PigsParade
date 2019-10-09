@@ -1,7 +1,7 @@
-package org.academiadecodigo.vimdiesels.pigsParade.grid.position;
+package org.academiadecodigo.vimdiesels.pigsparade.grid.position;
 
-import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
-import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.GridColor;
+import org.academiadecodigo.vimdiesels.pigsparade.grid.GridDirection;
 
 public interface GridPosition {
 
