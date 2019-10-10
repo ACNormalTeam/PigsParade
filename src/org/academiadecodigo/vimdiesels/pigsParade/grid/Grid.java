@@ -24,6 +24,9 @@ public class Grid {
 
     }
 
+    public Grid(){
+        this(20, 20);
+    }
     public void init() {
 
         this.rectangle = new Rectangle(PADDING, PADDING, this.width, this.height);
@@ -33,14 +36,16 @@ public class Grid {
     }
 
     public int getCols() {
-
+        System.out.println(this.cols);
+        System.out.println("this.cols/2 " +this.cols/2);
         return this.cols;
 
     }
 
     public int getRows() {
-
-        return rows;
+        System.out.println(this.rows);
+        System.out.println("this.rows/2 " +this.rows/2);
+        return this.rows;
 
     }
 
