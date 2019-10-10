@@ -24,10 +24,9 @@ public class ObjectSequence implements KeyboardHandler {
     public ObjectSequence(Grid grid){
         this.grid = grid;
         this.position = new Position(grid.getCols()/2, grid.getRows()/2, grid);
-<<<<<<< HEAD
         System.out.println(grid.getCols()/2);
         this.position.setPos(2, 1);
-=======
+
         position.setColor(GridColor.RED);
         currentDirection = DirectionControl.values()[(int) (Math.random() * DirectionControl.values().length)];
         keyboard = new Keyboard(this);
@@ -77,7 +76,6 @@ public class ObjectSequence implements KeyboardHandler {
                 break;
         }
 
->>>>>>> e0ecbf24118774706e25d45c6e9e0a8409bab8f7
     }
 
     @Override
