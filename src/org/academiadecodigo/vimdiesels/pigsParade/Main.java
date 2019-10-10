@@ -2,9 +2,10 @@ package org.academiadecodigo.vimdiesels.pigsParade;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Game game = new Game();
+    public static void main(String[] args) throws InterruptedException {
+        Game game = new Game(1000);
         game.init();
+        game.start();
 
     }
 }

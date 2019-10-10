@@ -8,6 +8,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.vimdiesels.pigsParade.Grid.DirectionControl;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
+import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.Position;
 
@@ -19,22 +20,24 @@ public class ObjectSequence implements KeyboardHandler {
     private final int MAX_SPEED = 2;
     private Keyboard keyboard;
     private int speed = 0;
+
     private DirectionControl currentDirection;
 
-    public ObjectSequence(Grid grid){
+    public ObjectSequence(Grid grid) {
         this.grid = grid;
-        this.position = new Position(grid.getCols()/2, grid.getRows()/2, grid);
-        System.out.println(grid.getCols()/2);
-        this.position.setPos(2, 1);
+        this.position = new Position(grid.getCols() / 2, grid.getRows() / 2, grid);
+        System.out.println(grid.getCols() / 2);
+        System.out.println(grid.getRows() / 2);
 
-        position.setColor(GridColor.RED);
+
+        //position.setColor(GridColor.RED);
         currentDirection = DirectionControl.values()[(int) (Math.random() * DirectionControl.values().length)];
         keyboard = new Keyboard(this);
         init();
     }
 
     private void init() {
-
+        position.moveInDirection(GridDirection.LEFT, 2);
         KeyboardEvent left = new KeyboardEvent();
         left.setKey(KeyboardEvent.KEY_LEFT);
         left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -57,6 +60,20 @@ public class ObjectSequence implements KeyboardHandler {
         keyboard.addEventListener(down);
 
     }
+
+    public void autoMove() {
+
+        //moves++;
+
+        GridDirection direction = GridDirection.LEFT;
+
+        this.position.moveInDirection(direction, 1);
+
+        /*if (moves < MOVES_BEFORE_BREAK || moves % BREAK_INTERVAL != 0) {
+        }*/
+
+    }
+
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -82,5 +99,8 @@ public class ObjectSequence implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
     }
+
+
+
 }
 

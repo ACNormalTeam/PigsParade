@@ -6,8 +6,11 @@ import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 
 public class Game {
 
-    public Game(){
+    int delay;
+    ObjectSequence snake;
 
+    public Game(int delay){
+        this.delay = delay;
     }
 
     public void init(){
@@ -17,7 +20,26 @@ public class Game {
         GameStage gameStage = new GameStage(grid.getCols(), grid.getRows());
         gameStage.init();
 
-        ObjectSequence snake = new ObjectSequence(gameStage);
+        snake = new ObjectSequence(gameStage);
+
+    }
+
+    public void start() throws InterruptedException {
+
+        while (true) {
+
+            // Pause for a while
+            Thread.sleep(delay);
+
+            autoMoveSnake();
+
+        }
+
+    }
+
+    public void autoMoveSnake() {
+
+        snake.autoMove();
 
     }
 
