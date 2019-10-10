@@ -32,7 +32,7 @@ public class GameStage extends Grid {
     public void init() {
         //super.init();
 
-        this.rectangle = new Rectangle(PADDING, PADDING+(CELL_SIZE*3), this.width, this.height);
+        this.rectangle = new Rectangle(PADDING, PADDING+(getCellSize()*3), this.width, this.height);
         this.rectangle.setColor(Color.DARK_GRAY);
         this.rectangle.fill();
     }

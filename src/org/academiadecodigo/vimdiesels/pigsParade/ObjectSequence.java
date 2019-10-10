@@ -12,6 +12,8 @@ public class ObjectSequence {
     public ObjectSequence(Grid grid){
         this.grid = grid;
         this.position = new Position(grid.getCols()/2, grid.getRows()/2, grid);
+        System.out.println(grid.getCols()/2);
+        this.position.setPos(2, 1);
     }
 
 }

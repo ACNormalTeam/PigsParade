@@ -17,7 +17,7 @@ public class Game {
         GameStage gameStage = new GameStage(grid.getCols(), grid.getRows());
         gameStage.init();
 
-        ObjectSequence snake = new ObjectSequence(grid);
+        ObjectSequence snake = new ObjectSequence(gameStage);
 
     }
 
