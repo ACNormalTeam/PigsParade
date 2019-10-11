@@ -36,15 +36,15 @@ public class Grid {
     }
 
     public int getCols() {
-        System.out.println(this.cols);
-        System.out.println("this.cols/2 " +this.cols/2);
+        //System.out.println(this.cols);
+        //System.out.println("this.cols/2 " +this.cols/2);
         return this.cols;
 
     }
 
     public int getRows() {
-        System.out.println(this.rows);
-        System.out.println("this.rows/2 " +this.rows/2);
+        //System.out.println(this.rows);
+        //System.out.println("this.rows/2 " +this.rows/2);
         return this.rows;
 
     }

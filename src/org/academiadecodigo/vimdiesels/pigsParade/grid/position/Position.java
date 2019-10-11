@@ -62,16 +62,16 @@ public class Position extends AbstractGridPosition {
     @Override
     public void moveInDirection(GridDirection direction, int distance) {
 
-        hide();
+        //hide();
 
         super.moveInDirection(direction, distance);
-
+        System.out.println("dir: "+ direction+ " dist: "+distance);
         this.rectangle.translate(
                 this.grid.columnToX(this.getCol()) - this.rectangle.getX(),
                 this.grid.rowToY(this.getRow()) - this.rectangle.getY()
         );
 
-        show();
+        //show();
 
     }
 

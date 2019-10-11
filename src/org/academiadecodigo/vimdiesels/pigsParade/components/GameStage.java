@@ -1,4 +1,4 @@
-package org.academiadecodigo.vimdiesels.pigsParade.Sections.components;
+package org.academiadecodigo.vimdiesels.pigsParade.components;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -22,7 +22,7 @@ public class GameStage extends Grid {
         this.rows = rows;
 
         this.width = cols * CELL_SIZE;
-        this.height = (rows-3) * CELL_SIZE;
+        this.height = rows * CELL_SIZE;
 
     }
 
@@ -35,5 +35,13 @@ public class GameStage extends Grid {
         this.rectangle = new Rectangle(PADDING, PADDING+(getCellSize()*3), this.width, this.height);
         this.rectangle.setColor(Color.DARK_GRAY);
         this.rectangle.fill();
+    }
+
+    public int getRows(){
+        return rows;
+    }
+
+    public int getCols(){
+        return cols;
     }
 }

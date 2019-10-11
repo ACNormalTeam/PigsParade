@@ -1,43 +1,38 @@
 package org.academiadecodigo.vimdiesels.pigsParade;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.vimdiesels.pigsParade.Grid.DirectionControl;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
-import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.Position;
 
-public class ObjectSequence implements KeyboardHandler {
+public class Snake implements KeyboardHandler {
 
     private GridPosition position;
     private Grid grid;
 
-    private final int MAX_SPEED = 2;
     private Keyboard keyboard;
-    private int speed = 0;
 
-    private DirectionControl currentDirection;
+    private GridDirection currentDirection;
 
-    public ObjectSequence(Grid grid) {
+    public Snake(Grid grid) {
         this.grid = grid;
-        this.position = new Position(grid.getCols() / 2, grid.getRows() / 2, grid);
+        this.position = new Position(1, 1, grid);
         System.out.println(grid.getCols() / 2);
         System.out.println(grid.getRows() / 2);
 
 
         //position.setColor(GridColor.RED);
-        currentDirection = DirectionControl.values()[(int) (Math.random() * DirectionControl.values().length)];
+        currentDirection = GridDirection.values()[(int) (Math.random() * GridDirection.values().length)];
         keyboard = new Keyboard(this);
         init();
     }
 
     private void init() {
-        position.moveInDirection(GridDirection.LEFT, 2);
+        //position.moveInDirection(GridDirection.LEFT, 2);
         KeyboardEvent left = new KeyboardEvent();
         left.setKey(KeyboardEvent.KEY_LEFT);
         left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -63,14 +58,11 @@ public class ObjectSequence implements KeyboardHandler {
 
     public void autoMove() {
 
-        //moves++;
 
-        GridDirection direction = GridDirection.LEFT;
+        GridDirection direction = GridDirection.RIGHT;
 
         this.position.moveInDirection(direction, 1);
-
-        /*if (moves < MOVES_BEFORE_BREAK || moves % BREAK_INTERVAL != 0) {
-        }*/
+        System.out.println("move!!!");
 
     }
 
@@ -80,16 +72,16 @@ public class ObjectSequence implements KeyboardHandler {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
-                currentDirection = DirectionControl.LEFT;
+                currentDirection = GridDirection.LEFT;
                 break;
             case KeyboardEvent.KEY_RIGHT:
-                currentDirection = DirectionControl.RIGHT;
+                currentDirection = GridDirection.RIGHT;
                 break;
             case KeyboardEvent.KEY_UP:
-                currentDirection = DirectionControl.UP;
+                currentDirection = GridDirection.UP;
                 break;
             case KeyboardEvent.KEY_DOWN:
-                currentDirection = DirectionControl.DOWN;
+                currentDirection = GridDirection.DOWN;
                 break;
         }
 
@@ -100,7 +92,4 @@ public class ObjectSequence implements KeyboardHandler {
 
     }
 
-
-
 }
-
