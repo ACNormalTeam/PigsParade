@@ -13,10 +13,17 @@ import org.w3c.dom.css.Rect;
 
 public class Game {
 
+<<<<<<< HEAD
     int delay;
     Snake snake;
     Food food;
 
+=======
+    private int delay;
+    private Snake snake;
+    private Food food;
+    private Grid grid;
+>>>>>>> a22d88c210143c50cc6fa2ced3ac5928a4a37aa0
 
     public Game(int delay){
         this.delay = delay;
@@ -25,27 +32,39 @@ public class Game {
     public void init(){
 
         Grid grid = new Grid(82, 42, 3);
-        grid.init();
+        this.grid = grid;
+        this.grid.init();
 
         //this.borderSize = grid.getCellSize();
 
-        Header header = new Header(grid, 3);
+        Header header = new Header(this.grid, 3);
         header.init();
 
-        grid.buildBorders();
+        this.grid.buildBorders();
 
 
+        snake = new Snake(this.grid);
+
+<<<<<<< HEAD
         snake = new Snake(grid);
         food = new Food(grid);
 
+=======
+>>>>>>> a22d88c210143c50cc6fa2ced3ac5928a4a37aa0
 
+    }
+
+    public void createFood(){
+        food = new Food(this.grid);
+        food.createFood();
     }
 
     public void start() throws InterruptedException {
-
+        this.createFood();
         snake.autoMove();
 
     }
+
 
 
 }
