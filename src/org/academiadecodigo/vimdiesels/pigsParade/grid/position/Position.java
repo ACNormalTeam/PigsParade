@@ -23,7 +23,7 @@ public class Position extends AbstractGridPosition {
                         this.grid.getCellSize(),
                         this.grid.getCellSize()
                 );
-
+        super.setDirection(GridDirection.RIGHT);
         show();
 
     }
@@ -42,11 +42,15 @@ public class Position extends AbstractGridPosition {
                 );
 
         show();
-
     }
 
-    public void checkLimits(){
+    public Rectangle getRectangle(){
+        return rectangle;
+    }
 
+    @Override
+    public void setDirection(GridDirection direction) {
+        super.setDirection(direction);
     }
 
     @Override
