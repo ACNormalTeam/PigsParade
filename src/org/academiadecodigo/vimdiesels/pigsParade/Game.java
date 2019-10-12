@@ -13,9 +13,10 @@ import org.w3c.dom.css.Rect;
 
 public class Game {
 
-    int delay;
-    Snake snake;
-
+    private int delay;
+    private Snake snake;
+    private Food food;
+    private Grid grid;
 
     public Game(int delay){
         this.delay = delay;
@@ -24,25 +25,33 @@ public class Game {
     public void init(){
 
         Grid grid = new Grid(82, 42, 3);
-        grid.init();
+        this.grid = grid;
+        this.grid.init();
 
         //this.borderSize = grid.getCellSize();
 
-        Header header = new Header(grid, 3);
+        Header header = new Header(this.grid, 3);
         header.init();
 
-        grid.buildBorders();
+        this.grid.buildBorders();
 
 
-        snake = new Snake(grid);
+        snake = new Snake(this.grid);
 
+
+    }
+
+    public void createFood(){
+        food = new Food(this.grid);
+        food.createFood();
     }
 
     public void start() throws InterruptedException {
-
+        this.createFood();
         snake.autoMove();
 
     }
+
 
 
 }

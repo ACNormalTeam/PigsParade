@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 
-public class Snake implements KeyboardHandler, Iterable<Position> {
+public class Snake implements KeyboardHandler{
 
     private GridPosition position;
     private Grid grid;
@@ -35,9 +35,7 @@ public class Snake implements KeyboardHandler, Iterable<Position> {
 
     public Snake(Grid grid) {
         this.grid = grid;
-        //this.position = new Position(grid.getCols()/2, grid.getRows()/2, grid);
 
-        //currentDirection = GridDirection.values()[(int) (Math.random() * GridDirection.values().length)];
         currentDirection = GridDirection.RIGHT;
         keyboard = new Keyboard(this);
         init();
@@ -89,19 +87,9 @@ public class Snake implements KeyboardHandler, Iterable<Position> {
         snakeBody.add(new Position(snakeHead.getCol()-7, snakeHead.getRow(), grid));
         snakeBody.add(new Position( snakeHead.getCol()-8, snakeHead.getRow(), grid));
 
-        //Iterator snakeIterator = snakeBody.iterator();
-    }
-
-    @Override
-    public Iterator iterator() {
-        return snakeBody.iterator();
     }
 
     public void autoMove() throws InterruptedException {
-
-        for(GridPosition pos : snakeBody){
-            System.out.println(snakeBody.indexOf(pos) + " " + pos.getCol());
-        }
 
         if (foundWall()) {
             return;
@@ -133,11 +121,7 @@ public class Snake implements KeyboardHandler, Iterable<Position> {
                // Thread.sleep(10);
             }
 
-        } // close while
-    } // close automove
-
-    public void moveSnakePart(){
-
+        }
     }
 
     public boolean foundWall(){
@@ -150,10 +134,6 @@ public class Snake implements KeyboardHandler, Iterable<Position> {
                         || (snakeHeadPosition.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
                         || (snakeHeadPosition.getRow() == grid.getBorderCells())
         ){
-            /*System.out.println("snake col: " + this.position.getCol());
-            System.out.println("Left border cells: " + grid.getBorderCells());
-            System.out.println("snake pos in px: " + grid.columnToX(this.position.getCol()));
-            System.out.println("x: "+grid.columnToX(grid.getBorderCells()));*/
             return true;
         }
         return false;
