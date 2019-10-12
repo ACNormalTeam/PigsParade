@@ -15,13 +15,10 @@ import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.Position;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Timer;
 
 public class Snake implements KeyboardHandler{
 
-    private GridPosition position;
     private Grid grid;
 
     private List<GridPosition> snakeBody;
@@ -77,15 +74,10 @@ public class Snake implements KeyboardHandler{
         snakeHead.setDirection(currentDirection);
 
         snakeBody.add(snakeHead);
-        snakeBody.add(new Position(snakeHead.getCol()-1, snakeHead.getRow(), grid));
 
-        snakeBody.add(new Position( snakeHead.getCol()-2, snakeHead.getRow(), grid));
-        snakeBody.add(new Position(snakeHead.getCol()-3, snakeHead.getRow(), grid));
-        snakeBody.add(new Position( snakeHead.getCol()-4, snakeHead.getRow(), grid));
-        snakeBody.add(new Position(snakeHead.getCol()-5, snakeHead.getRow(), grid));
-        snakeBody.add(new Position( snakeHead.getCol()-6, snakeHead.getRow(), grid));
-        snakeBody.add(new Position(snakeHead.getCol()-7, snakeHead.getRow(), grid));
-        snakeBody.add(new Position( snakeHead.getCol()-8, snakeHead.getRow(), grid));
+        for(int i = 1; i < 3; i++){
+            snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid));
+        }
 
     }
 
@@ -118,10 +110,13 @@ public class Snake implements KeyboardHandler{
                         this.grid.rowToY(snakeBody.get(i).getRow()) - snakeBody.get(i).getRectangle().getY()
                 );
 
-               // Thread.sleep(10);
             }
 
         }
+    }
+
+    public void growSnake(){
+        
     }
 
     public boolean foundWall(){
