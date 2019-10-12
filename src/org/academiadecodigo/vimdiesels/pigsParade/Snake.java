@@ -83,15 +83,17 @@ public class Snake implements KeyboardHandler{
 
     public void autoMove() throws InterruptedException {
 
-        if (foundWall()) {
-            return;
-        }
+
 
         while (true) {
 
             GridDirection direction = currentDirection;
 
             Thread.sleep(100);
+
+            if (foundWall()) {
+                return;
+            }
 
             for (int i = snakeBody.size()-1; i >= 0; i--) {
 
@@ -116,7 +118,7 @@ public class Snake implements KeyboardHandler{
     }
 
     public void growSnake(){
-        
+
     }
 
     public boolean foundWall(){
@@ -127,7 +129,8 @@ public class Snake implements KeyboardHandler{
                 (snakeHeadPosition.getCol() == grid.getCols()-grid.getBorderCells())
                         || (snakeHeadPosition.getCol() == grid.getBorderCells() - 1)
                         || (snakeHeadPosition.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
-                        || (snakeHeadPosition.getRow() == grid.getBorderCells())
+                        || (snakeHeadPosition.getRow() == grid.getRows() - grid.getBorderCells()
+                        + ((grid.getPadding()*2)/grid.getCellSize()))
         ){
             return true;
         }
