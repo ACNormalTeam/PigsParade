@@ -1,5 +1,6 @@
 package org.academiadecodigo.vimdiesels.pigsParade;
 
+import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.Position;
@@ -8,27 +9,36 @@ public class Food {
 
     private Grid grid;
     private GridPosition foodPosition;
-    private int randomFood;
+    private int rowRandomFood;
+    private int colRandomFood;
+    private int i;
 
     public Food(Grid grid) {
         this.grid = grid;
-        this.foodPosition = new Position(grid.getCols()/2, grid.getRows()/2, grid);
-        //randomFood = new Position((int) (Math.random() * grid.getCellSize())) ;
+        createFood();
+
+        while(i < 1){
+            createFood();
+            i++;
+        }
 
     }
 
     public void createFood(){
 
-        randomFood = (int) (Math.random() * (grid.getCols()*grid.getRows()));
+        rowRandomFood = (int) (Math.random() * (
+                (grid.getRows() - (grid.getBorderCells() - ((grid.getPadding() * 2)/grid.getCellSize()))) - (Header.getHeightCells() + grid.getBorderCells())
+                )) + Header.getHeightCells() + grid.getBorderCells();
 
-        if(randomFood != grid.getBorderSize()){
-            createFood();
-        }
+        colRandomFood = (int) (Math.random() * (
+                (grid.getCols() - grid.getBorderCells()) - (grid.getBorderCells())
+                )) + grid.getBorderCells();
 
-        createFood();
+        foodPosition = new Position(colRandomFood, rowRandomFood, grid);
     }
 
-    public void checkFoodColision{
+    public void checkFoodColision(){
+
 
 
     }

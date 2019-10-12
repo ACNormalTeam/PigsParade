@@ -15,6 +15,7 @@ public class Game {
 
     int delay;
     Snake snake;
+    Food food;
 
 
     public Game(int delay){
@@ -35,6 +36,8 @@ public class Game {
 
 
         snake = new Snake(grid);
+        food = new Food(grid);
+
 
     }
 
