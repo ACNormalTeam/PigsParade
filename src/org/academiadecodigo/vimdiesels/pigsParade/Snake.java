@@ -18,11 +18,11 @@ public class Snake implements KeyboardHandler {
 
     private GridDirection currentDirection;
 
-    public Snake(Grid grid) {
+    private int topLimit;
+
+    public Snake(Grid grid, int topLimit) {
         this.grid = grid;
-        this.position = new Position(1, 1, grid);
-        System.out.println(grid.getCols() / 2);
-        System.out.println(grid.getRows() / 2);
+        this.position = new Position(5, 10, grid);
 
 
         //position.setColor(GridColor.RED);
@@ -62,7 +62,10 @@ public class Snake implements KeyboardHandler {
         GridDirection direction = GridDirection.RIGHT;
 
         this.position.moveInDirection(direction, 1);
-        System.out.println("move!!!");
+
+    }
+
+    public void checkLimits(){
 
     }
 

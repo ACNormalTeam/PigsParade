@@ -45,6 +45,10 @@ public class Position extends AbstractGridPosition {
 
     }
 
+    public void checkLimits(){
+
+    }
+
     @Override
     public void show() {
 

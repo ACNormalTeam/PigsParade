@@ -30,7 +30,7 @@ public class Grid {
     public void init() {
 
         this.rectangle = new Rectangle(PADDING, PADDING, this.width, this.height);
-        this.rectangle.setColor(Color.BLUE);
+        this.rectangle.setColor(Color.WHITE);
         this.rectangle.draw();
 
     }
@@ -71,6 +71,10 @@ public class Grid {
 
         return this.rectangle.getY();
 
+    }
+
+    public int getPadding(){
+        return PADDING;
     }
 
     public int getCellSize() {
