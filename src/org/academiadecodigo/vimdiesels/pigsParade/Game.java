@@ -27,6 +27,8 @@ public class Game {
         Grid grid = new Grid(41, 21);
         grid.init();
 
+        this.borderSize = grid.getCellSize();
+
         Header header = new Header(grid);
         header.init();
 
@@ -42,11 +44,11 @@ public class Game {
         borderLeft.setColor(Color.CYAN);
         borderLeft.fill();
 
-        Rectangle borderRight = new Rectangle(grid.getWidth(), header.getShape().getHeight()+borderTop.getHeight(), borderSize, grid.getHeight()-header.getShape().getHeight()-borderBottom.getHeight());
+        Rectangle borderRight = new Rectangle(grid.getWidth()-grid.getPadding(), header.getShape().getHeight()+borderTop.getHeight(), borderSize, grid.getHeight()-header.getShape().getHeight()-borderBottom.getHeight());
         borderRight.setColor(Color.CYAN);
         borderRight.fill();
 
-        snake = new Snake(grid, 10);
+        snake = new Snake(grid, 10, this.borderSize);
 
     }
 

@@ -18,12 +18,13 @@ public class Snake implements KeyboardHandler {
 
     private GridDirection currentDirection;
 
-    private int topLimit;
+    private int topLimit, borderLimit;
 
-    public Snake(Grid grid, int topLimit) {
+    public Snake(Grid grid, int topLimit, int borderLimit) {
         this.grid = grid;
-        this.position = new Position(5, 10, grid);
+        this.position = new Position(grid.getCols()/2, grid.getRows()/2, grid);
 
+        this.borderLimit = borderLimit;
 
         //position.setColor(GridColor.RED);
         currentDirection = GridDirection.values()[(int) (Math.random() * GridDirection.values().length)];
@@ -58,6 +59,9 @@ public class Snake implements KeyboardHandler {
 
     public void autoMove() {
 
+        if(foundWall()){
+            return;
+        }
 
         GridDirection direction = GridDirection.RIGHT;
 
@@ -65,8 +69,12 @@ public class Snake implements KeyboardHandler {
 
     }
 
-    public void checkLimits(){
-
+    public boolean foundWall(){
+        System.out.println("getcol " + this.position.getCol());
+        if(this.position.getCol() == grid.getCols()-(this.borderLimit/grid.getCellSize())-1){
+            return true;
+        }
+        return false;
     }
 
 
