@@ -1,6 +1,5 @@
 package org.academiadecodigo.vimdiesels.pigsParade;
 
-
 //import org.academiadecodigo.vimdiesels.pigsParade.components.GameStage;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
@@ -13,17 +12,10 @@ import org.w3c.dom.css.Rect;
 
 public class Game {
 
-<<<<<<< HEAD
-    int delay;
-    Snake snake;
-    Food food;
-
-=======
     private int delay;
     private Snake snake;
     private Food food;
     private Grid grid;
->>>>>>> a22d88c210143c50cc6fa2ced3ac5928a4a37aa0
 
     public Game(int delay){
         this.delay = delay;
@@ -45,12 +37,6 @@ public class Game {
 
         snake = new Snake(this.grid);
 
-<<<<<<< HEAD
-        snake = new Snake(grid);
-        food = new Food(grid);
-
-=======
->>>>>>> a22d88c210143c50cc6fa2ced3ac5928a4a37aa0
 
     }
 
