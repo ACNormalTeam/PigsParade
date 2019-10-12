@@ -4,6 +4,7 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
@@ -18,22 +19,17 @@ public class Snake implements KeyboardHandler {
 
     private GridDirection currentDirection;
 
-    private int topLimit, borderLimit;
 
-    public Snake(Grid grid, int topLimit, int borderLimit) {
+    public Snake(Grid grid) {
         this.grid = grid;
         this.position = new Position(grid.getCols()/2, grid.getRows()/2, grid);
 
-        this.borderLimit = borderLimit;
-
-        //position.setColor(GridColor.RED);
         currentDirection = GridDirection.values()[(int) (Math.random() * GridDirection.values().length)];
         keyboard = new Keyboard(this);
         init();
     }
 
     private void init() {
-        //position.moveInDirection(GridDirection.LEFT, 2);
         KeyboardEvent left = new KeyboardEvent();
         left.setKey(KeyboardEvent.KEY_LEFT);
         left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -70,8 +66,17 @@ public class Snake implements KeyboardHandler {
     }
 
     public boolean foundWall(){
-        System.out.println("getcol " + this.position.getCol());
-        if(this.position.getCol() == grid.getCols()-(this.borderLimit/grid.getCellSize())-1){
+
+        if(
+                (this.position.getCol() == grid.getCols()-grid.getBorderCells())
+                        || (this.position.getCol() == grid.getBorderCells() - 1)
+                        || (this.position.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
+                        || (this.position.getRow() == grid.getBorderCells())
+        ){
+            /*System.out.println("snake col: " + this.position.getCol());
+            System.out.println("Left border cells: " + grid.getBorderCells());
+            System.out.println("snake pos in px: " + grid.columnToX(this.position.getCol()));
+            System.out.println("x: "+grid.columnToX(grid.getBorderCells()));*/
             return true;
         }
         return false;
