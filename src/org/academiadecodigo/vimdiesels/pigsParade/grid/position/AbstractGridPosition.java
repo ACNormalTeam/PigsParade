@@ -9,6 +9,7 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     private int col;
     private int row;
+    private GridDirection direction;
     private GridColor color;
     private Grid grid;
 
@@ -33,6 +34,11 @@ public abstract class AbstractGridPosition implements GridPosition {
     }
 
     @Override
+    public void setDirection(GridDirection direction){
+        this.direction = direction;
+    }
+
+    @Override
     public int getCol() {
         return col;
     }
@@ -41,6 +47,9 @@ public abstract class AbstractGridPosition implements GridPosition {
     public int getRow() {
         return row;
     }
+
+    @Override
+    public GridDirection getDirection() { return direction; }
 
     @Override
     public GridColor getColor() {
