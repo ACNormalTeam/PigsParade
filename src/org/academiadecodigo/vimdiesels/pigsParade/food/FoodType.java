@@ -1,4 +1,4 @@
-package org.academiadecodigo.vimdiesels.pigsParade;
+package org.academiadecodigo.vimdiesels.pigsParade.food;
 
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
 

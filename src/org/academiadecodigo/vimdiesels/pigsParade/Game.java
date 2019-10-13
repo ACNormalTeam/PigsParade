@@ -35,15 +35,18 @@ public class Game {
 
 
     }
-
+    /*
     public void createFood(){
         food = new Food(this.grid);
         food.createFood();
     }
+    */
 
     public void start() throws InterruptedException {
-        this.createFood();
+        //this.createFood();
+        food.createFood();
         snake.autoMove();
+
 
     }
 

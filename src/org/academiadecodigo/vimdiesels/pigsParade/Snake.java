@@ -5,9 +5,11 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 
 import org.academiadecodigo.vimdiesels.pigsParade.food.Food;
+import org.academiadecodigo.vimdiesels.pigsParade.food.FoodFactory;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
@@ -26,7 +28,7 @@ public class Snake implements KeyboardHandler{
 
     private List<GridPosition> snakeBody;
     private GridPosition snakeHead;
-
+    private List<Food> foods;
     private Keyboard keyboard;
 
     private GridDirection currentDirection;
@@ -82,9 +84,27 @@ public class Snake implements KeyboardHandler{
             snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid));
         }
 
-        this.food = new Food(grid);
+        this.food = new Food();
 
         food.createFood();
+    }
+
+    public void createFood(){
+
+        this.foods = new ArrayList();
+
+        for (int i = 0; i < 10 ; i++) {
+            foods.add(FoodFactory.getNewFood());
+        }
+    }
+
+    public void createFood2(){
+        this.foods = new ArrayList<>();
+        for (int i = 0; i < 100 ; i++) {
+            foods.add(FoodFactory.getNewFood());
+            foods = new Picture()
+
+        }
     }
 
     public void autoMove() throws InterruptedException {

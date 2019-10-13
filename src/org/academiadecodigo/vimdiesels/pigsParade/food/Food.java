@@ -12,11 +12,12 @@ public class Food {
     private int rowRandomFood;
     private int colRandomFood;
 
-
+    /*
     public Food(Grid grid) {
         this.grid = grid;
         //createFood();
     }
+    */
 
     public void createFood(){
 
@@ -34,4 +35,6 @@ public class Food {
     public GridPosition getPosition(){
         return foodPosition;
     }
+
+
 }
