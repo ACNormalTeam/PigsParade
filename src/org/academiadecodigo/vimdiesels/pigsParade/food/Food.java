@@ -9,13 +9,10 @@ public class Food {
 
     private Grid grid;
     private GridPosition foodPosition;
-    private int rowRandomFood;
-    private int colRandomFood;
 
 
     public Food(Grid grid) {
         this.grid = grid;
-        //createFood();
     }
 
     public void createFood(){

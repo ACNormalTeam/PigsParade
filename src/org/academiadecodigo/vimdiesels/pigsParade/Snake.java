@@ -5,6 +5,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import org.academiadecodigo.vimdiesels.pigsParade.components.GameOver;
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 
 import org.academiadecodigo.vimdiesels.pigsParade.food.Food;
@@ -30,6 +31,8 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
 
     private Keyboard keyboard;
 
+    private GameOver gameover;
+
     private GridDirection currentDirection;
     private CollisionDetector collisionDetector;
 
@@ -40,6 +43,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
 
         currentDirection = GridDirection.RIGHT;
         keyboard = new Keyboard(this);
+        gameover = new GameOver(grid);
         init();
     }
 
@@ -85,9 +89,6 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
             snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid));
         }
 
-        //this.food = new Food(grid);
-
-        //food.createFood();
     }
 
     public void autoMove(int delay) throws InterruptedException {
@@ -100,11 +101,11 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
             Thread.sleep(delay);
 
             if (foundWall() || foundBodyPart()) {
+                gameover.init();
                 return;
             }
 
             if(foundFood()){
-                //System.out.println("found food");
                 snakeBody.add(
                         new Position(
                                 snakeBody.get(snakeBody.size()-1).getCol(),
@@ -117,7 +118,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
             }
 
             for (int i = snakeBody.size()-1; i >= 0; i--) {
-
+                System.out.println("snake col=" + snakeBody.get(0).getCol());
                 if( i == 0 ){
                     snakeBody.get(i).moveInDirection(direction, 1);
                     break;
@@ -134,7 +135,6 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
                 );
 
             }
-            //growSnake();
 
         }
     }
@@ -175,10 +175,6 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
             food.createFood();
     }
 
-    /*public void replaceFood(){
-        food.replace();
-    }*/
-
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
@@ -208,7 +204,6 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
                 currentDirection = GridDirection.DOWN;
                 break;
         }
-        //System.out.println("current Direction" + currentDirection);
 
     }
 
