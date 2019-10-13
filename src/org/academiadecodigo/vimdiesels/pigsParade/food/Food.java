@@ -20,18 +20,42 @@ public class Food {
 
     public void createFood(){
 
-        rowRandomFood = (int) (Math.random() * (
-                (grid.getRows() - (grid.getBorderCells() - ((grid.getPadding() * 2)/grid.getCellSize()))) - (Header.getHeightCells() + grid.getBorderCells())
-        )) + Header.getHeightCells() + grid.getBorderCells();
-
-        colRandomFood = (int) (Math.random() * (
-                (grid.getCols() - grid.getBorderCells()) - (grid.getBorderCells())
-        )) + grid.getBorderCells();
-
-        foodPosition = new Position(colRandomFood, rowRandomFood, grid);
+        foodPosition = new Position(getRandomCol(), getRandomRow(), grid);
     }
 
     public GridPosition getPosition(){
         return foodPosition;
+    }
+
+    private int getRandomRow(){
+
+       return (int) (Math.random() * (
+               (grid.getRows() - (grid.getBorderCells() - (grid.getPadding()/grid.getCellSize()))) - (Header.getHeightCells() + grid.getBorderCells())
+       )) + Header.getHeightCells() + grid.getBorderCells();
+
+    }
+
+    private int getRandomCol(){
+        return (int) (Math.random() * (
+                (grid.getCols() - grid.getBorderCells()) - (grid.getBorderCells())
+        )) + grid.getBorderCells();
+    }
+
+    public void replace(){
+        foodPosition.hide();
+        foodPosition.setPos(getRandomCol(), getRandomRow());
+        //System.out.println("food row: " + foodPosition.getRow());
+        //System.out.println("food col " + foodPosition.getCol());
+
+        foodPosition.getRectangle().translate(
+                grid.columnToX(foodPosition.getCol()) - foodPosition.getRectangle().getX(),
+                grid.rowToY(foodPosition.getRow()) - foodPosition.getRectangle().getY()
+
+        );
+
+        //System.out.println("x: " + foodPosition.getRectangle().getX());
+        //System.out.println("y: " + foodPosition.getRectangle().getY());
+
+        foodPosition.show();
     }
 }

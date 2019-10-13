@@ -11,7 +11,7 @@ public class Game {
 
     private int delay;
     private Snake snake;
-    private Food food;
+    //private Food food;
     private Grid grid;
 
     public Game(int delay){
@@ -20,13 +20,13 @@ public class Game {
 
     public void init(){
 
-        Grid grid = new Grid(82, 42, 3);
+        Grid grid = new Grid(62, 32, 2);
         this.grid = grid;
         this.grid.init();
 
         //this.borderSize = grid.getCellSize();
 
-        Header header = new Header(this.grid, 3);
+        Header header = new Header(this.grid, 6);
         header.init();
 
         this.grid.buildBorders();
@@ -37,13 +37,13 @@ public class Game {
 
     }
 
-    public void createFood(){
+    /*public void createFood(){
         food = new Food(this.grid);
         food.createFood();
-    }
+    }*/
 
     public void start() throws InterruptedException {
-        this.createFood();
+        //this.createFood();
         snake.autoMove();
 
     }

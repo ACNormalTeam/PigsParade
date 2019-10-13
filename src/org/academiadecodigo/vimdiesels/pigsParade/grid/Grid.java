@@ -62,7 +62,7 @@ public class Grid {
                 getBorderSize()
         );
 
-        borderBottom.setColor(Color.BLUE);
+        borderBottom.setColor(Color.YELLOW);
         borderBottom.fill();
 
         Rectangle borderLeft = new Rectangle(

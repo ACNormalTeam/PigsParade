@@ -18,9 +18,10 @@ import org.academiadecodigo.vimdiesels.pigsParade.grid.position.Position;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Snake implements KeyboardHandler{
+public class Snake implements KeyboardHandler, Iterable<GridPosition> {
 
     private Grid grid;
 
@@ -30,6 +31,7 @@ public class Snake implements KeyboardHandler{
     private Keyboard keyboard;
 
     private GridDirection currentDirection;
+    private CollisionDetector collisionDetector;
 
     private Food food;
 
@@ -66,6 +68,7 @@ public class Snake implements KeyboardHandler{
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
 
+        createFood();
     }
 
     public void createSnake(){
@@ -82,9 +85,9 @@ public class Snake implements KeyboardHandler{
             snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid));
         }
 
-        this.food = new Food(grid);
+        //this.food = new Food(grid);
 
-        food.createFood();
+        //food.createFood();
     }
 
     public void autoMove() throws InterruptedException {
@@ -101,6 +104,7 @@ public class Snake implements KeyboardHandler{
             }
 
             if(foundFood()){
+                System.out.println("found food");
                 snakeBody.add(
                         new Position(
                                 snakeBody.get(snakeBody.size()-1).getCol(),
@@ -108,6 +112,7 @@ public class Snake implements KeyboardHandler{
                                 grid
                         )
                 );
+                food.replace();
             }
 
             for (int i = snakeBody.size()-1; i >= 0; i--) {
@@ -164,7 +169,14 @@ public class Snake implements KeyboardHandler{
         return false;
     }
 
+    public void createFood(){
+            food = new Food(grid);
+            food.createFood();
+    }
 
+    /*public void replaceFood(){
+        food.replace();
+    }*/
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -204,4 +216,8 @@ public class Snake implements KeyboardHandler{
 
     }
 
+    @Override
+    public Iterator<GridPosition> iterator() {
+        return snakeBody.iterator();
+    }
 }
