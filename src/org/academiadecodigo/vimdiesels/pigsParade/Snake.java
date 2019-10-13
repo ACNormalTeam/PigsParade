@@ -7,6 +7,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 
+import org.academiadecodigo.vimdiesels.pigsParade.food.Food;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
@@ -30,7 +31,6 @@ public class Snake implements KeyboardHandler{
 
     private GridDirection currentDirection;
 
-    private int lastRowPosition, lastColPosition;
     private Food food;
 
     public Snake(Grid grid) {
@@ -94,10 +94,20 @@ public class Snake implements KeyboardHandler{
 
             GridDirection direction = currentDirection;
 
-            Thread.sleep(100);
+            Thread.sleep(75);
 
-            if (foundWall()) {
+            if (foundWall() || foundBodyPart()) {
                 return;
+            }
+
+            if(foundFood()){
+                snakeBody.add(
+                        new Position(
+                                snakeBody.get(snakeBody.size()-1).getCol(),
+                                snakeBody.get(snakeBody.size()-1).getRow(),
+                                grid
+                        )
+                );
             }
 
             for (int i = snakeBody.size()-1; i >= 0; i--) {
@@ -118,38 +128,38 @@ public class Snake implements KeyboardHandler{
                 );
 
             }
-            growSnake();
+            //growSnake();
 
         }
     }
 
-    public void growSnake(){
-        System.out.println("food col: " +food.getPosition().getCol() + "snake head col:" + snakeBody.get(0).getCol());
-        if( (food.getPosition().getCol() == snakeBody.get(0).getCol() ) && (food.getPosition().getRow() == snakeBody.get(0).getRow())){
-
-            snakeBody.add(
-                    new Position(
-                            snakeBody.get(snakeBody.size()-1).getCol(),
-                            snakeBody.get(snakeBody.size()-1).getRow(),
-                            grid
-                    )
-            );
-        }
-
+    public boolean foundFood(){
+        return (
+                food.getPosition().getCol() == snakeBody.get(0).getCol()) &&
+                (food.getPosition().getRow() == snakeBody.get(0).getRow()
+        );
     }
 
     public boolean foundWall(){
 
         GridPosition snakeHeadPosition = snakeBody.get(0);
 
-        if(
+        return(
                 (snakeHeadPosition.getCol() == grid.getCols()-grid.getBorderCells())
                         || (snakeHeadPosition.getCol() == grid.getBorderCells() - 1)
                         || (snakeHeadPosition.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
                         || (snakeHeadPosition.getRow() == grid.getRows() - grid.getBorderCells()
                         + ((grid.getPadding()*2)/grid.getCellSize()))
-        ){
-            return true;
+        );
+    }
+
+    public boolean foundBodyPart(){
+
+        for(int i = 1; i < snakeBody.size()-1; i++){
+
+            if((snakeBody.get(i).getCol() == snakeBody.get(0).getCol()) && snakeBody.get(i).getRow() == snakeBody.get(0).getRow()){
+                return true;
+            }
         }
         return false;
     }
