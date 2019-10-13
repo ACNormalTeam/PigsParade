@@ -30,4 +30,8 @@ public class Food {
 
         foodPosition = new Position(colRandomFood, rowRandomFood, grid);
     }
+
+    public GridPosition getPosition(){
+        return foodPosition;
+    }
 }

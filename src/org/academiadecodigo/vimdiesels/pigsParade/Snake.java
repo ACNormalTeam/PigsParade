@@ -14,6 +14,8 @@ import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.Position;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class Snake implements KeyboardHandler{
     private GridDirection currentDirection;
 
     private int lastRowPosition, lastColPosition;
+    private Food food;
 
     public Snake(Grid grid) {
         this.grid = grid;
@@ -79,10 +82,12 @@ public class Snake implements KeyboardHandler{
             snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid));
         }
 
+        this.food = new Food(grid);
+
+        food.createFood();
     }
 
     public void autoMove() throws InterruptedException {
-
 
 
         while (true) {
@@ -113,11 +118,23 @@ public class Snake implements KeyboardHandler{
                 );
 
             }
+            growSnake();
 
         }
     }
 
     public void growSnake(){
+        System.out.println("food col: " +food.getPosition().getCol() + "snake head col:" + snakeBody.get(0).getCol());
+        if( (food.getPosition().getCol() == snakeBody.get(0).getCol() ) && (food.getPosition().getRow() == snakeBody.get(0).getRow())){
+
+            snakeBody.add(
+                    new Position(
+                            snakeBody.get(snakeBody.size()-1).getCol(),
+                            snakeBody.get(snakeBody.size()-1).getRow(),
+                            grid
+                    )
+            );
+        }
 
     }
 
@@ -138,24 +155,37 @@ public class Snake implements KeyboardHandler{
     }
 
 
+
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
 
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_LEFT:
+                if(currentDirection == GridDirection.RIGHT){
+                    return;
+                }
                 currentDirection = GridDirection.LEFT;
                 break;
             case KeyboardEvent.KEY_RIGHT:
+                if(currentDirection == GridDirection.LEFT){
+                    return;
+                }
                 currentDirection = GridDirection.RIGHT;
                 break;
             case KeyboardEvent.KEY_UP:
+                if(currentDirection == GridDirection.DOWN){
+                    return;
+                }
                 currentDirection = GridDirection.UP;
                 break;
             case KeyboardEvent.KEY_DOWN:
+                if(currentDirection == GridDirection.UP){
+                    return;
+                }
                 currentDirection = GridDirection.DOWN;
                 break;
         }
-        System.out.println("current Direction" + currentDirection);
+        //System.out.println("current Direction" + currentDirection);
 
     }
 

@@ -73,8 +73,8 @@ public class Position extends AbstractGridPosition {
         hide();
 
         super.moveInDirection(direction, distance);
-        System.out.println("dir: "+ direction+ " dist: "+distance);
-        System.out.println("super col" + super.getCol());
+        //System.out.println("dir: "+ direction+ " dist: "+distance);
+        //System.out.println("super col" + super.getCol());
         this.rectangle.translate(
                 this.grid.columnToX(this.getCol()) - this.rectangle.getX(),
                 this.grid.rowToY(this.getRow()) - this.rectangle.getY()
