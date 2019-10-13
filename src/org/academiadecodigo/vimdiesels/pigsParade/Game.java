@@ -11,7 +11,6 @@ public class Game {
 
     private int delay;
     private Snake snake;
-    //private Food food;
     private Grid grid;
 
     public Game(int delay){
@@ -24,28 +23,19 @@ public class Game {
         this.grid = grid;
         this.grid.init();
 
-        //this.borderSize = grid.getCellSize();
-
         Header header = new Header(this.grid, 6);
         header.init();
 
         this.grid.buildBorders();
-
 
         snake = new Snake(this.grid);
 
 
     }
 
-    /*public void createFood(){
-        food = new Food(this.grid);
-        food.createFood();
-    }*/
 
     public void start() throws InterruptedException {
-        //this.createFood();
-        snake.autoMove();
-
+        snake.autoMove(this.delay);
     }
 
 

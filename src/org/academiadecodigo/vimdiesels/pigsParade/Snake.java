@@ -90,21 +90,21 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
         //food.createFood();
     }
 
-    public void autoMove() throws InterruptedException {
+    public void autoMove(int delay) throws InterruptedException {
 
 
         while (true) {
 
             GridDirection direction = currentDirection;
 
-            Thread.sleep(75);
+            Thread.sleep(delay);
 
             if (foundWall() || foundBodyPart()) {
                 return;
             }
 
             if(foundFood()){
-                System.out.println("found food");
+                //System.out.println("found food");
                 snakeBody.add(
                         new Position(
                                 snakeBody.get(snakeBody.size()-1).getCol(),
@@ -112,6 +112,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
                                 grid
                         )
                 );
+                Header.setScore(4);
                 food.replace();
             }
 
