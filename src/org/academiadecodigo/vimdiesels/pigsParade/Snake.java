@@ -7,6 +7,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 
+import org.academiadecodigo.vimdiesels.pigsParade.food.Food;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
@@ -30,7 +31,6 @@ public class Snake implements KeyboardHandler{
 
     private GridDirection currentDirection;
 
-    private int lastRowPosition, lastColPosition;
     private Food food;
 
     public Snake(Grid grid) {
@@ -94,9 +94,9 @@ public class Snake implements KeyboardHandler{
 
             GridDirection direction = currentDirection;
 
-            Thread.sleep(100);
+            Thread.sleep(75);
 
-            if (foundWall()) {
+            if (foundWall() || foundBodyPart()) {
                 return;
             }
 
@@ -151,6 +151,17 @@ public class Snake implements KeyboardHandler{
                         || (snakeHeadPosition.getRow() == grid.getRows() - grid.getBorderCells()
                         + ((grid.getPadding()*2)/grid.getCellSize()))
         );
+    }
+
+    public boolean foundBodyPart(){
+
+        for(int i = 1; i < snakeBody.size()-1; i++){
+
+            if((snakeBody.get(i).getCol() == snakeBody.get(0).getCol()) && snakeBody.get(i).getRow() == snakeBody.get(0).getRow()){
+                return true;
+            }
+        }
+        return false;
     }
 
 
