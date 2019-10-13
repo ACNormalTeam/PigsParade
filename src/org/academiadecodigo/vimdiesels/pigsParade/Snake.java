@@ -100,6 +100,16 @@ public class Snake implements KeyboardHandler{
                 return;
             }
 
+            if(foundFood()){
+                snakeBody.add(
+                        new Position(
+                                snakeBody.get(snakeBody.size()-1).getCol(),
+                                snakeBody.get(snakeBody.size()-1).getRow(),
+                                grid
+                        )
+                );
+            }
+
             for (int i = snakeBody.size()-1; i >= 0; i--) {
 
                 if( i == 0 ){
@@ -118,40 +128,29 @@ public class Snake implements KeyboardHandler{
                 );
 
             }
-            growSnake();
+            //growSnake();
 
         }
     }
 
-    public void growSnake(){
-        System.out.println("food col: " +food.getPosition().getCol() + "snake head col:" + snakeBody.get(0).getCol());
-        if( (food.getPosition().getCol() == snakeBody.get(0).getCol() ) && (food.getPosition().getRow() == snakeBody.get(0).getRow())){
-
-            snakeBody.add(
-                    new Position(
-                            snakeBody.get(snakeBody.size()-1).getCol(),
-                            snakeBody.get(snakeBody.size()-1).getRow(),
-                            grid
-                    )
-            );
-        }
-
+    public boolean foundFood(){
+        return (
+                food.getPosition().getCol() == snakeBody.get(0).getCol()) &&
+                (food.getPosition().getRow() == snakeBody.get(0).getRow()
+        );
     }
 
     public boolean foundWall(){
 
         GridPosition snakeHeadPosition = snakeBody.get(0);
 
-        if(
+        return(
                 (snakeHeadPosition.getCol() == grid.getCols()-grid.getBorderCells())
                         || (snakeHeadPosition.getCol() == grid.getBorderCells() - 1)
                         || (snakeHeadPosition.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
                         || (snakeHeadPosition.getRow() == grid.getRows() - grid.getBorderCells()
                         + ((grid.getPadding()*2)/grid.getCellSize()))
-        ){
-            return true;
-        }
-        return false;
+        );
     }
 
 
