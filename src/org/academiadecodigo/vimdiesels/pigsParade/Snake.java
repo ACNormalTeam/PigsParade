@@ -72,6 +72,7 @@ public class Snake implements KeyboardHandler{
 
         snakeBody = new ArrayList();
 
+
         snakeHead = new Position(grid.getCols()/2, grid.getRows()/2, grid);
         snakeHead.setColor(GridColor.BLUE);
         snakeHead.setDirection(currentDirection);
@@ -85,6 +86,7 @@ public class Snake implements KeyboardHandler{
         this.food = new Food(grid);
 
         food.createFood();
+
     }
 
     public void autoMove() throws InterruptedException {

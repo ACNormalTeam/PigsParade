@@ -1,5 +1,6 @@
 package org.academiadecodigo.vimdiesels.pigsParade;
 
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
@@ -11,11 +12,12 @@ public class Food {
     private GridPosition foodPosition;
     private int rowRandomFood;
     private int colRandomFood;
+    private Picture picture;
 
 
     public Food(Grid grid) {
         this.grid = grid;
-        //createFood();
+        createFood();
     }
 
     public void createFood(){
@@ -29,6 +31,7 @@ public class Food {
         )) + grid.getBorderCells();
 
         foodPosition = new Position(colRandomFood, rowRandomFood, grid);
+
     }
 
     public GridPosition getPosition(){

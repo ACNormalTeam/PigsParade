@@ -2,6 +2,8 @@ package org.academiadecodigo.vimdiesels.pigsParade.grid;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.vimdiesels.pigsParade.Game;
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.Position;
@@ -17,6 +19,11 @@ public class Grid {
 
     private Rectangle rectangle;
 
+    //private String pathImages = Game.resourcesPathImages;
+    private Picture menuBackground;
+    private Picture picture;
+
+
     public Grid(int cols, int rows, int gameStageBorderSize) {
 
         this.cols = cols;
@@ -28,21 +35,38 @@ public class Grid {
         this.gameStageBorderCells = gameStageBorderSize;
         this.gameStageBorderSize = gameStageBorderSize * CELL_SIZE;
 
+        this.picture = picture;
+
+        //drawMenu();
+
 
     }
 
-    public Grid(){
+    public void drawMenu() {
+
+        //menuBackground = new Picture(0, 0, pathImages + "resources/images/floor-720x360.png");
+        //menuBackground.draw();
+
+    }
+
+    public Grid() {
         this(20, 20, 20);
     }
+
     public void init() {
 
         this.rectangle = new Rectangle(PADDING, PADDING, this.width, this.height);
         this.rectangle.setColor(Color.WHITE);
         this.rectangle.draw();
 
+        this.picture = new Picture(90, 90, "resources/images/floor-720x360.png");
+        this.picture.draw();
+        this.picture = new Picture(10, 90, "resources/images/floor-720x360.png");
+        this.picture.draw();
+
     }
 
-    public void buildBorders(){
+    public void buildBorders() {
         Header.getHeight();
 
         Rectangle borderTop = new Rectangle(
@@ -67,19 +91,19 @@ public class Grid {
 
         Rectangle borderLeft = new Rectangle(
                 getX(),
-                Header.getHeight()+borderTop.getHeight(),
+                Header.getHeight() + borderTop.getHeight(),
                 getBorderSize(),
-                getHeight()-Header.getHeight()-getBorderSize()
+                getHeight() - Header.getHeight() - getBorderSize()
         );
 
         borderLeft.setColor(Color.CYAN);
         borderLeft.fill();
 
         Rectangle borderRight = new Rectangle(
-                getWidth()+getPadding()-getBorderSize(),
-                Header.getHeight()+getBorderSize(),
+                getWidth() + getPadding() - getBorderSize(),
+                Header.getHeight() + getBorderSize(),
                 getBorderSize(),
-                getHeight()-Header.getHeight()-getBorderSize()
+                getHeight() - Header.getHeight() - getBorderSize()
         );
 
         borderRight.setColor(Color.CYAN);
@@ -125,15 +149,15 @@ public class Grid {
 
     }
 
-    public int getBorderSize(){
+    public int getBorderSize() {
         return this.gameStageBorderSize;
     }
 
-    public int getBorderCells(){
+    public int getBorderCells() {
         return gameStageBorderCells;
     }
 
-    public int getPadding(){
+    public int getPadding() {
         return PADDING;
     }
 
@@ -143,7 +167,7 @@ public class Grid {
 
     public GridPosition makeGridPosition() {
 
-        return new Position( this );
+        return new Position(this);
 
     }
 
@@ -154,11 +178,11 @@ public class Grid {
     }
 
     public int rowToY(int row) {
-        return ( row * CELL_SIZE ) + PADDING;
+        return (row * CELL_SIZE) + PADDING;
     }
 
     public int columnToX(int column) {
-        return ( column * CELL_SIZE ) + PADDING;
+        return (column * CELL_SIZE) + PADDING;
     }
 
 

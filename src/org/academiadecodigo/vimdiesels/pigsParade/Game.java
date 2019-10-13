@@ -4,6 +4,7 @@ package org.academiadecodigo.vimdiesels.pigsParade;
 //import org.academiadecodigo.vimdiesels.pigsParade.components.GameStage;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
@@ -13,14 +14,18 @@ import org.w3c.dom.css.Rect;
 
 public class Game {
 
+
     private int delay;
     private Snake snake;
     private Food food;
     private Grid grid;
+    private Picture pic;
 
     public Game(int delay){
         this.delay = delay;
     }
+
+    //public static final String resourcesPathImages = "./resources/images/";
 
     public void init(){
 
@@ -42,8 +47,9 @@ public class Game {
     }
 
     public void createFood(){
-        food = new Food(this.grid);
-        food.createFood();
+        pic = new Picture(250,150,"resources/images/apple.png");
+        pic.draw();
+        //food.createFood();
     }
 
     public void start() throws InterruptedException {
