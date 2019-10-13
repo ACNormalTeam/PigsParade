@@ -1,10 +1,10 @@
-package org.academiadecodigo.vimdiesels.pigsParade.components;
+/*package org.academiadecodigo.vimdiesels.pigsParade.components;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 
-public class GameStage extends Grid {
+public class GameStage {
 
     private Rectangle rectangle;
 
@@ -26,8 +26,6 @@ public class GameStage extends Grid {
 
     }
 
-
-
     @Override
     public void init() {
         //super.init();
@@ -44,4 +42,4 @@ public class GameStage extends Grid {
     public int getCols(){
         return cols;
     }
-}
+}*/

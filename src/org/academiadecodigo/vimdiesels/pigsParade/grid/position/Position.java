@@ -23,7 +23,7 @@ public class Position extends AbstractGridPosition {
                         this.grid.getCellSize(),
                         this.grid.getCellSize()
                 );
-
+        super.setDirection(GridDirection.RIGHT);
         show();
 
     }
@@ -42,7 +42,15 @@ public class Position extends AbstractGridPosition {
                 );
 
         show();
+    }
 
+    public Rectangle getRectangle(){
+        return rectangle;
+    }
+
+    @Override
+    public void setDirection(GridDirection direction) {
+        super.setDirection(direction);
     }
 
     @Override
@@ -62,16 +70,17 @@ public class Position extends AbstractGridPosition {
     @Override
     public void moveInDirection(GridDirection direction, int distance) {
 
-        //hide();
+        hide();
 
         super.moveInDirection(direction, distance);
         System.out.println("dir: "+ direction+ " dist: "+distance);
+        System.out.println("super col" + super.getCol());
         this.rectangle.translate(
                 this.grid.columnToX(this.getCol()) - this.rectangle.getX(),
                 this.grid.rowToY(this.getRow()) - this.rectangle.getY()
         );
 
-        //show();
+        show();
 
     }
 
