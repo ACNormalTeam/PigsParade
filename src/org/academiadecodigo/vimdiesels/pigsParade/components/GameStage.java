@@ -39,7 +39,6 @@ public class GameStage extends Grid {
 
     public int getRows(){
         return rows;
-
     }
 
     public int getCols(){
