@@ -26,7 +26,7 @@ public class Game {
     private Rectangle rectangle;
     private Picture img;
     private int countDown;
-    public Sound backgroundmusic;
+
 
 
     public Game(int delay){
@@ -40,14 +40,12 @@ public class Game {
         rectangle.setColor(Color.WHITE);
         rectangle.fill();
         img = new Picture(grid.getPadding(), grid.getPadding(), "./resources/images/splashscreen.jpg");
-        backgroundmusic = new Sound("/resources/sounds/backgroundmusic.wav");
 
         img.draw();
-        backgroundmusic.play(true);
 
 
         System.out.println(grid.getWidth() + " x " + grid.getHeight());
-        while(countDown < 15){
+        while(countDown < 10){
             Thread.sleep(500);
             countDown++;
         }
@@ -75,7 +73,6 @@ public class Game {
 
 
     public void start() throws InterruptedException {
-        backgroundmusic.stop();
         snake.autoMove(this.delay);
     }
 
