@@ -1,5 +1,6 @@
 package org.academiadecodigo.vimdiesels.pigsParade;
 
+
 //import org.academiadecodigo.vimdiesels.pigsParade.components.GameStage;
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 import org.academiadecodigo.vimdiesels.pigsParade.food.Food;
@@ -35,18 +36,15 @@ public class Game {
 
 
     }
-    /*
+
     public void createFood(){
         food = new Food(this.grid);
         food.createFood();
     }
-    */
 
     public void start() throws InterruptedException {
-        //this.createFood();
-        food.createFood();
+        this.createFood();
         snake.autoMove();
-
 
     }
 
