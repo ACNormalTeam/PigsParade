@@ -40,6 +40,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
     private Food food;
 
     private Sound deathSound;
+    private Sound eatSound;
 
     public Snake(Grid grid) {
         this.grid = grid;
@@ -47,7 +48,8 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
         currentDirection = GridDirection.RIGHT;
         keyboard = new Keyboard(this);
         gameover = new GameOver(grid);
-        //deathSound = new Sound("./resources/sounds/pig.wav");
+        deathSound = new Sound("/resources/sounds/snakedeath.wav");
+        
         init();
     }
 
@@ -118,6 +120,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
                                 "./resources/images/snake-body.png"
                         )
                 );
+
                 Header.setScore(4);
                 food.replace();
             }
@@ -161,6 +164,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
                         || (snakeHeadPosition.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
                         || (snakeHeadPosition.getRow() == grid.getRows() - grid.getBorderCells()
                         + (grid.getPadding()/grid.getCellSize()))
+
         );
     }
 
@@ -169,7 +173,6 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
         for(int i = 1; i < snakeBody.size()-1; i++){
 
             if((snakeBody.get(i).getCol() == snakeBody.get(0).getCol()) && snakeBody.get(i).getRow() == snakeBody.get(0).getRow()){
-                deathSound = new Sound("/resources/sounds/snakedeath.wav");
                 deathSound.play(true);
                 return true;
             }
