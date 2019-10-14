@@ -24,11 +24,10 @@ public class Header {
 
     public void init(){
         headerWrapper = new Rectangle(grid.getPadding(),grid.getPadding(),grid.getWidth(),grid.rowToY(heightCells));
-        headerWrapper.setColor(Color.RED);
+        headerWrapper.setColor(Color.BLACK);
         headerWrapper.fill();
 
         headerHeight = headerWrapper.getHeight();
-
         score = new Text(grid.getWidth()-grid.getBorderSize()-grid.getPadding(), Header.getHeight()/2, "0000");
 
         score.setColor(Color.WHITE);

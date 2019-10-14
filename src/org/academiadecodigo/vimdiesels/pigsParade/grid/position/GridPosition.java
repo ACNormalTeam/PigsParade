@@ -1,6 +1,7 @@
 package org.academiadecodigo.vimdiesels.pigsParade.grid.position;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
 import org.w3c.dom.css.Rect;
@@ -20,7 +21,7 @@ public interface GridPosition {
 
     public GridColor getColor();
 
-    public Rectangle getRectangle();
+    public Picture getRectangle();
 
     public void setColor(GridColor color);
 

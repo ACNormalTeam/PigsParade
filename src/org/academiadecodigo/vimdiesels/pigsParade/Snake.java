@@ -79,14 +79,14 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
 
         snakeBody = new ArrayList();
 
-        snakeHead = new Position(grid.getCols()/2, grid.getRows()/2, grid);
+        snakeHead = new Position(grid.getCols()/2, grid.getRows()/2, grid, "./resources/images/snake-head.png");
         snakeHead.setColor(GridColor.BLUE);
         snakeHead.setDirection(currentDirection);
 
         snakeBody.add(snakeHead);
 
         for(int i = 1; i < 3; i++){
-            snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid));
+            snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid, "./resources/images/snake-body.png"));
         }
 
     }
@@ -110,7 +110,8 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
                         new Position(
                                 snakeBody.get(snakeBody.size()-1).getCol(),
                                 snakeBody.get(snakeBody.size()-1).getRow(),
-                                grid
+                                grid,
+                                "./resources/images/snake-body.png"
                         )
                 );
                 Header.setScore(4);
@@ -118,7 +119,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
             }
 
             for (int i = snakeBody.size()-1; i >= 0; i--) {
-                System.out.println("snake col=" + snakeBody.get(0).getCol());
+                //System.out.println("snake col=" + snakeBody.get(0).getCol());
                 if( i == 0 ){
                     snakeBody.get(i).moveInDirection(direction, 1);
                     break;
@@ -155,7 +156,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
                         || (snakeHeadPosition.getCol() == grid.getBorderCells() - 1)
                         || (snakeHeadPosition.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
                         || (snakeHeadPosition.getRow() == grid.getRows() - grid.getBorderCells()
-                        + ((grid.getPadding()*2)/grid.getCellSize()))
+                        + (grid.getPadding()/grid.getCellSize()))
         );
     }
 
