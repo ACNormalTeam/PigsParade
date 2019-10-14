@@ -1,5 +1,6 @@
 package org.academiadecodigo.vimdiesels.pigsParade;
 
+import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -38,12 +39,15 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
 
     private Food food;
 
+    private Sound deathSound;
+
     public Snake(Grid grid) {
         this.grid = grid;
 
         currentDirection = GridDirection.RIGHT;
         keyboard = new Keyboard(this);
         gameover = new GameOver(grid);
+        deathSound = new Sound("./resources/sounds/pig.wav");
         init();
     }
 
@@ -165,6 +169,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
         for(int i = 1; i < snakeBody.size()-1; i++){
 
             if((snakeBody.get(i).getCol() == snakeBody.get(0).getCol()) && snakeBody.get(i).getRow() == snakeBody.get(0).getRow()){
+                deathSound.play(false);
                 return true;
             }
         }
