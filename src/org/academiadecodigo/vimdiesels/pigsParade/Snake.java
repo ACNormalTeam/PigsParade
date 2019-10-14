@@ -47,7 +47,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
         currentDirection = GridDirection.RIGHT;
         keyboard = new Keyboard(this);
         gameover = new GameOver(grid);
-        deathSound = new Sound("./resources/sounds/pig.wav");
+        //deathSound = new Sound("./resources/sounds/pig.wav");
         init();
     }
 
@@ -169,7 +169,8 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
         for(int i = 1; i < snakeBody.size()-1; i++){
 
             if((snakeBody.get(i).getCol() == snakeBody.get(0).getCol()) && snakeBody.get(i).getRow() == snakeBody.get(0).getRow()){
-                deathSound.play(false);
+                deathSound = new Sound("/resources/sounds/snakedeath.wav");
+                deathSound.play(true);
                 return true;
             }
         }
