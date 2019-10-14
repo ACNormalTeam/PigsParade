@@ -3,6 +3,7 @@ package org.academiadecodigo.vimdiesels.pigsParade;
 
 //import org.academiadecodigo.vimdiesels.pigsParade.components.GameStage;
 
+import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -25,6 +26,7 @@ public class Game {
     private Rectangle rectangle;
     private Picture img;
     private int countDown;
+    private Sound backgroundmusic;
 
 
     public Game(int delay){
@@ -39,6 +41,7 @@ public class Game {
         rectangle.fill();
         img = new Picture(grid.getPadding(), grid.getPadding(), "./resources/images/splashscreen.jpg");
         img.draw();
+
 
 
         System.out.println(grid.getWidth() + " x " + grid.getHeight());
