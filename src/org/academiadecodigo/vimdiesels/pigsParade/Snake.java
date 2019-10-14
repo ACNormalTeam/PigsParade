@@ -5,8 +5,10 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import org.academiadecodigo.vimdiesels.pigsParade.components.GameOver;
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 
+import org.academiadecodigo.vimdiesels.pigsParade.food.Food;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridColor;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.GridDirection;
@@ -17,9 +19,10 @@ import org.academiadecodigo.vimdiesels.pigsParade.grid.position.Position;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Snake implements KeyboardHandler{
+public class Snake implements KeyboardHandler, Iterable<GridPosition> {
 
     private Grid grid;
 
@@ -28,9 +31,11 @@ public class Snake implements KeyboardHandler{
 
     private Keyboard keyboard;
 
-    private GridDirection currentDirection;
+    private GameOver gameover;
 
-    private int lastRowPosition, lastColPosition;
+    private GridDirection currentDirection;
+    private CollisionDetector collisionDetector;
+
     private Food food;
 
     public Snake(Grid grid) {
@@ -38,6 +43,7 @@ public class Snake implements KeyboardHandler{
 
         currentDirection = GridDirection.RIGHT;
         keyboard = new Keyboard(this);
+        gameover = new GameOver(grid);
         init();
     }
 
@@ -66,44 +72,54 @@ public class Snake implements KeyboardHandler{
         keyboard.addEventListener(up);
         keyboard.addEventListener(down);
 
+        createFood();
     }
 
     public void createSnake(){
 
         snakeBody = new ArrayList();
 
-
-        snakeHead = new Position(grid.getCols()/2, grid.getRows()/2, grid);
+        snakeHead = new Position(grid.getCols()/2, grid.getRows()/2, grid, "./resources/images/snake-head.png");
         snakeHead.setColor(GridColor.BLUE);
         snakeHead.setDirection(currentDirection);
 
         snakeBody.add(snakeHead);
 
         for(int i = 1; i < 3; i++){
-            snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid));
+            snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid, "./resources/images/snake-body.png"));
         }
-
-        this.food = new Food(grid);
-
-        food.createFood();
 
     }
 
-    public void autoMove() throws InterruptedException {
+    public void autoMove(int delay) throws InterruptedException {
 
 
         while (true) {
 
             GridDirection direction = currentDirection;
 
-            Thread.sleep(100);
+            Thread.sleep(delay);
 
-            if (foundWall()) {
+            if (foundWall() || foundBodyPart()) {
+                gameover.init();
                 return;
             }
 
-            for (int i = snakeBody.size()-1; i >= 0; i--) {
+            if(foundFood()){
+                snakeBody.add(
+                        new Position(
+                                snakeBody.get(snakeBody.size()-1).getCol(),
+                                snakeBody.get(snakeBody.size()-1).getRow(),
+                                grid,
+                                "./resources/images/snake-body.png"
+                        )
+                );
+                Header.setScore(4);
+                food.replace();
+            }
 
+            for (int i = snakeBody.size()-1; i >= 0; i--) {
+                //System.out.println("snake col=" + snakeBody.get(0).getCol());
                 if( i == 0 ){
                     snakeBody.get(i).moveInDirection(direction, 1);
                     break;
@@ -120,43 +136,45 @@ public class Snake implements KeyboardHandler{
                 );
 
             }
-            growSnake();
 
         }
     }
 
-    public void growSnake(){
-        System.out.println("food col: " +food.getPosition().getCol() + "snake head col:" + snakeBody.get(0).getCol());
-        if( (food.getPosition().getCol() == snakeBody.get(0).getCol() ) && (food.getPosition().getRow() == snakeBody.get(0).getRow())){
-
-            snakeBody.add(
-                    new Position(
-                            snakeBody.get(snakeBody.size()-1).getCol(),
-                            snakeBody.get(snakeBody.size()-1).getRow(),
-                            grid
-                    )
-            );
-        }
-
+    public boolean foundFood(){
+        return (
+                food.getPosition().getCol() == snakeBody.get(0).getCol()) &&
+                (food.getPosition().getRow() == snakeBody.get(0).getRow()
+        );
     }
 
     public boolean foundWall(){
 
         GridPosition snakeHeadPosition = snakeBody.get(0);
 
-        if(
+        return(
                 (snakeHeadPosition.getCol() == grid.getCols()-grid.getBorderCells())
                         || (snakeHeadPosition.getCol() == grid.getBorderCells() - 1)
                         || (snakeHeadPosition.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
                         || (snakeHeadPosition.getRow() == grid.getRows() - grid.getBorderCells()
-                        + ((grid.getPadding()*2)/grid.getCellSize()))
-        ){
-            return true;
+                        + (grid.getPadding()/grid.getCellSize()))
+        );
+    }
+
+    public boolean foundBodyPart(){
+
+        for(int i = 1; i < snakeBody.size()-1; i++){
+
+            if((snakeBody.get(i).getCol() == snakeBody.get(0).getCol()) && snakeBody.get(i).getRow() == snakeBody.get(0).getRow()){
+                return true;
+            }
         }
         return false;
     }
 
-
+    public void createFood(){
+            food = new Food(grid);
+            food.createFood();
+    }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -187,7 +205,6 @@ public class Snake implements KeyboardHandler{
                 currentDirection = GridDirection.DOWN;
                 break;
         }
-        //System.out.println("current Direction" + currentDirection);
 
     }
 
@@ -196,4 +213,8 @@ public class Snake implements KeyboardHandler{
 
     }
 
+    @Override
+    public Iterator<GridPosition> iterator() {
+        return snakeBody.iterator();
+    }
 }

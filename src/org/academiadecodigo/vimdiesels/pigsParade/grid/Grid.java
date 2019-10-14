@@ -76,7 +76,7 @@ public class Grid {
                 getBorderSize()
         );
 
-        borderTop.setColor(Color.BLUE);
+        borderTop.setColor(Color.BLACK);
         borderTop.fill();
 
         Rectangle borderBottom = new Rectangle(
@@ -86,7 +86,7 @@ public class Grid {
                 getBorderSize()
         );
 
-        borderBottom.setColor(Color.BLUE);
+        borderBottom.setColor(Color.BLACK);
         borderBottom.fill();
 
         Rectangle borderLeft = new Rectangle(
@@ -96,7 +96,7 @@ public class Grid {
                 getHeight() - Header.getHeight() - getBorderSize()
         );
 
-        borderLeft.setColor(Color.CYAN);
+        borderLeft.setColor(Color.BLACK);
         borderLeft.fill();
 
         Rectangle borderRight = new Rectangle(
@@ -106,21 +106,17 @@ public class Grid {
                 getHeight() - Header.getHeight() - getBorderSize()
         );
 
-        borderRight.setColor(Color.CYAN);
+        borderRight.setColor(Color.BLACK);
         borderRight.fill();
 
     }
 
     public int getCols() {
-        //System.out.println(this.cols);
-        //System.out.println("this.cols/2 " +this.cols/2);
         return this.cols;
 
     }
 
     public int getRows() {
-        //System.out.println(this.rows);
-        //System.out.println("this.rows/2 " +this.rows/2);
         return this.rows;
 
     }
@@ -173,7 +169,7 @@ public class Grid {
 
     public GridPosition makeGridPosition(int col, int row) {
 
-        return new Position(col, row, this);
+        return new Position(col, row, this, "");
 
     }
 

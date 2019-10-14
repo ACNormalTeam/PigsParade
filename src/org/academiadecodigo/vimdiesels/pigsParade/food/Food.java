@@ -1,4 +1,4 @@
-package org.academiadecodigo.vimdiesels.pigsParade;
+package org.academiadecodigo.vimdiesels.pigsParade.food;
 
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.position.GridPosition;
@@ -15,7 +15,6 @@ public class Food {
         this.grid = grid;
     }
 
-
     public void createFood(){
 
         foodPosition = new Position(getRandomCol(), getRandomRow(), grid, "./resources/images/apple.png");
@@ -27,9 +26,9 @@ public class Food {
 
     private int getRandomRow(){
 
-        return (int) (Math.random() * (
-                (grid.getRows() - (grid.getBorderCells() - (grid.getPadding()/grid.getCellSize()))) - (Header.getHeightCells() + grid.getBorderCells())
-        )) + Header.getHeightCells() + grid.getBorderCells();
+       return (int) (Math.random() * (
+               (grid.getRows() - (grid.getBorderCells() - (grid.getPadding()/grid.getCellSize()))) - (Header.getHeightCells() + grid.getBorderCells())
+       )) + Header.getHeightCells() + grid.getBorderCells();
 
     }
 
@@ -56,6 +55,4 @@ public class Food {
 
         foodPosition.show();
     }
-
-
 }
