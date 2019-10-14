@@ -1,59 +1,88 @@
 package org.academiadecodigo.vimdiesels.pigsparade;
 
+
+//import org.academiadecodigo.vimdiesels.pigsParade.components.GameStage;
+
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+<<<<<<< HEAD:src/org/academiadecodigo/vimdiesels/pigsparade/Game.java
+=======
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
+import org.academiadecodigo.vimdiesels.pigsParade.components.StartScreen;
+import org.academiadecodigo.vimdiesels.pigsParade.food.Food;
+import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
+>>>>>>> grid:src/org/academiadecodigo/vimdiesels/pigsParade/Game.java
+
 
 public class Game {
 
-    private static final int CELL_SIZE = 20;
-    private static final double PADDING = 10;
-    private Rectangle background;
-    private Rectangle square;
-    private Keyboard keyboard;
-    private KeyboardHandler snakeKeyboardHandler;
-    private ObjectSequence snake;
-    //GameObject[] objects = new GameObject[20];
+    private int delay;
+    private Snake snake;
+    private Grid grid;
+    private Picture bg;
+    private Rectangle rectangle;
+    private Picture img;
+    private int countDown;
 
-    public Game(){
 
-        this.background = new Rectangle(PADDING, PADDING, 800, 800);
-        this.square = new Rectangle(PADDING, PADDING, 30, 30);
-        this.snake = new ObjectSequence();
-        snakeKeyboardHandler = new SnakeKeyboardHandler(this.snake);
-        keyboard = new Keyboard(snakeKeyboardHandler);
+    public Game(int delay){
+        this.delay = delay;
+    }
 
+    public void preInit() throws InterruptedException {
+
+        setGrid();
+        rectangle = new Rectangle(grid.getPadding(), grid.getPadding(), grid.getWidth(), grid.getHeight());
+        rectangle.setColor(Color.WHITE);
+        rectangle.fill();
+        img = new Picture(grid.getPadding(), grid.getPadding(), "./resources/images/splashscreen.jpg");
+        img.draw();
+
+
+        System.out.println(grid.getWidth() + " x " + grid.getHeight());
+        while(countDown < 10){
+            Thread.sleep(500);
+            countDown++;
+        }
+
+        rectangle.delete();
+        img.delete();
+        init();
+    }
+
+    public void init() throws InterruptedException {
+
+        Header header = new Header(this.grid, 6);
+        header.init();
+
+        this.grid.buildBorders();
+
+        snake = new Snake(this.grid);
+
+        KeyboardEvent space = new KeyboardEvent();
+        space.setKey(KeyboardEvent.KEY_SPACE);
+        space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
+        start();
     }
 
 
-    public void init(){
-        background.setColor(Color.BLACK);
-        background.fill();
-
-        square.setColor(Color.PINK);
-        square.fill();
-
-        //make it run by default, snakes don't stop XD
-
-        newEvent(KeyboardEvent.KEY_UP, KeyboardEventType.KEY_PRESSED);
-        newEvent(KeyboardEvent.KEY_DOWN, KeyboardEventType.KEY_PRESSED);
-        newEvent(KeyboardEvent.KEY_RIGHT, KeyboardEventType.KEY_PRESSED);
-        newEvent(KeyboardEvent.KEY_LEFT, KeyboardEventType.KEY_PRESSED);
-
-
+    public void start() throws InterruptedException {
+         snake.autoMove(this.delay);
     }
 
-    public void newEvent(int key, KeyboardEventType eventType){
+    public void setGrid(){
+        Grid grid = new Grid(62, 32, 2);
+        this.grid = grid;
+        this.grid.init();
 
-        KeyboardEvent event = new KeyboardEvent();
-        event.setKey(key);
-        event.setKeyboardEventType(eventType);
-
-        keyboard.addEventListener(event);
+        bg = new Picture(grid.getPadding(), grid.getPadding(), "./resources/images/bg-soft.jpg");
+        bg.draw();
 
     }
-
 }

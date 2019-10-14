@@ -9,6 +9,7 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     private int col;
     private int row;
+    private GridDirection direction;
     private GridColor color;
     private Grid grid;
 
@@ -33,6 +34,11 @@ public abstract class AbstractGridPosition implements GridPosition {
     }
 
     @Override
+    public void setDirection(GridDirection direction){
+        this.direction = direction;
+    }
+
+    @Override
     public int getCol() {
         return col;
     }
@@ -41,6 +47,9 @@ public abstract class AbstractGridPosition implements GridPosition {
     public int getRow() {
         return row;
     }
+
+    @Override
+    public GridDirection getDirection() { return direction; }
 
     @Override
     public GridColor getColor() {
@@ -88,7 +97,7 @@ public abstract class AbstractGridPosition implements GridPosition {
 
     public void moveDown(int dist) {
 
-        int maxRowsDown = dist > getGrid().getRows() - (getRow() + 1) ? getGrid().getRows() - (getRow() + 1) : dist;
+        int maxRowsDown = Math.min(dist, getGrid().getRows() - (getRow() + 1));
         setPos(getCol(), getRow() + maxRowsDown);
 
     }
@@ -102,7 +111,7 @@ public abstract class AbstractGridPosition implements GridPosition {
 
 
     public void moveRight(int dist) {
-        int maxRowsRight = dist > getGrid().getCols() - (getCol() + 1) ? getGrid().getCols() - (getCol() + 1) : dist;
+        int maxRowsRight = Math.min(dist, getGrid().getCols() - (getCol() + 1));
         setPos(getCol() + maxRowsRight, getRow());
     }
 
