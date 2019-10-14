@@ -7,7 +7,7 @@ public class FoodFactory {
     public FoodFactory(Food food) {
         this.food = food;
     }
-
+    /*
     public static Food getNewFood() {
 
         int random = (int) (Math.random() * FoodType.values().length);
@@ -23,5 +23,6 @@ public class FoodFactory {
 
         }
         return null;
-    }
+
+    }*/
 }

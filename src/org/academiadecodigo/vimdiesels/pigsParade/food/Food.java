@@ -10,15 +10,15 @@ public class Food {
     private Grid grid;
     private GridPosition foodPosition;
 
-    /*
+
     public Food(Grid grid) {
         this.grid = grid;
     }
-    */
+
 
     public void createFood(){
 
-        foodPosition = new Position(getRandomCol(), getRandomRow(), grid);
+        foodPosition = new Position(getRandomCol(), getRandomRow(), grid, "./resources/images/apple.png");
     }
 
     public GridPosition getPosition(){
