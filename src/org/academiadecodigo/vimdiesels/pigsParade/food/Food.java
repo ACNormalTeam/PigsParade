@@ -15,6 +15,7 @@ public class Food {
         this.grid = grid;
     }
 
+
     public void createFood(){
 
         foodPosition = new Position(getRandomCol(), getRandomRow(), grid, "./resources/images/apple.png");
@@ -55,4 +56,6 @@ public class Food {
 
         foodPosition.show();
     }
+
+
 }

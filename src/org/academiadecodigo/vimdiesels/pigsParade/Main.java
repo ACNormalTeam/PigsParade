@@ -1,5 +1,7 @@
 package org.academiadecodigo.vimdiesels.pigsParade;
 
+
+
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
@@ -10,5 +12,6 @@ public class Main {
 
         game.start();*/
 
+        //Sound bgm = new Sound("./resources/sounds/pig.wav");
     }
 }

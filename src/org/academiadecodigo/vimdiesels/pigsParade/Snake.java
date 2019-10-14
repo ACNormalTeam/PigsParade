@@ -1,5 +1,6 @@
 package org.academiadecodigo.vimdiesels.pigsParade;
 
+import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -38,12 +39,18 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
 
     private Food food;
 
+    private Sound deathSound;
+    private Sound eatSound;
+
+
     public Snake(Grid grid) {
         this.grid = grid;
 
         currentDirection = GridDirection.RIGHT;
         keyboard = new Keyboard(this);
         gameover = new GameOver(grid);
+        deathSound = new Sound("/resources/sounds/snakedeath.wav");
+        eatSound = new Sound("/resources/sounds/eatsound.wav");
         init();
     }
 
@@ -114,6 +121,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
                                 "./resources/images/snake-body.png"
                         )
                 );
+                eatSound.play(true);
                 Header.setScore(4);
                 food.replace();
             }
@@ -151,20 +159,26 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
 
         GridPosition snakeHeadPosition = snakeBody.get(0);
 
-        return(
-                (snakeHeadPosition.getCol() == grid.getCols()-grid.getBorderCells())
-                        || (snakeHeadPosition.getCol() == grid.getBorderCells() - 1)
-                        || (snakeHeadPosition.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
-                        || (snakeHeadPosition.getRow() == grid.getRows() - grid.getBorderCells()
-                        + (grid.getPadding()/grid.getCellSize()))
-        );
+        if((snakeHeadPosition.getCol() == grid.getCols()-grid.getBorderCells())
+                            || (snakeHeadPosition.getCol() == grid.getBorderCells() - 1)
+                            || (snakeHeadPosition.getRow() == grid.getBorderCells() + Header.getHeightCells() -1)
+                            || (snakeHeadPosition.getRow() == grid.getRows() - grid.getBorderCells()
+                            + (grid.getPadding()/grid.getCellSize()))){
+            deathSound.play(true);
+
+            return true;
+        }
+        return false;
     }
+
 
     public boolean foundBodyPart(){
 
         for(int i = 1; i < snakeBody.size()-1; i++){
 
             if((snakeBody.get(i).getCol() == snakeBody.get(0).getCol()) && snakeBody.get(i).getRow() == snakeBody.get(0).getRow()){
+                deathSound.play(true);
+
                 return true;
             }
         }

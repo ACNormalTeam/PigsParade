@@ -3,6 +3,7 @@ package org.academiadecodigo.vimdiesels.pigsParade;
 
 //import org.academiadecodigo.vimdiesels.pigsParade.components.GameStage;
 
+import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -27,6 +28,7 @@ public class Game {
     private int countDown;
 
 
+
     public Game(int delay){
         this.delay = delay;
     }
@@ -38,6 +40,7 @@ public class Game {
         rectangle.setColor(Color.WHITE);
         rectangle.fill();
         img = new Picture(grid.getPadding(), grid.getPadding(), "./resources/images/splashscreen.jpg");
+
         img.draw();
 
 
@@ -70,7 +73,7 @@ public class Game {
 
 
     public void start() throws InterruptedException {
-         snake.autoMove(this.delay);
+        snake.autoMove(this.delay);
     }
 
     public void setGrid(){
