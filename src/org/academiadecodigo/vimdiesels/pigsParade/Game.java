@@ -78,7 +78,7 @@ public class Game {
         this.grid = grid;
         this.grid.init();
 
-        bg = new Picture(grid.getPadding(), grid.getPadding(), "./resources/images/bg.jpg");
+        bg = new Picture(grid.getPadding(), grid.getPadding(), "./resources/images/bg-soft.jpg");
         bg.draw();
 
     }
