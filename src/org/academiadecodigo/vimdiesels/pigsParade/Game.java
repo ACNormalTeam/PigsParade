@@ -39,7 +39,7 @@ public class Game {
         rectangle = new Rectangle(grid.getPadding(), grid.getPadding(), grid.getWidth(), grid.getHeight());
         rectangle.setColor(Color.WHITE);
         rectangle.fill();
-        img = new Picture(grid.getPadding(), grid.getPadding(), "./resources/images/splashscreen.jpg");
+        img = new Picture(grid.getPadding(), grid.getPadding(), "resources/images/splashscreen.jpg");
 
         img.draw();
 
@@ -81,7 +81,7 @@ public class Game {
         this.grid = grid;
         this.grid.init();
 
-        bg = new Picture(grid.getPadding(), grid.getPadding(), "./resources/images/bg-soft.jpg");
+        bg = new Picture(grid.getPadding(), grid.getPadding(), "resources/images/bg-soft.jpg");
         bg.draw();
 
     }

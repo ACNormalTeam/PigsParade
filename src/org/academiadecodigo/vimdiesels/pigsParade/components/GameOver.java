@@ -16,7 +16,7 @@ public class GameOver {
         rectangle = new Rectangle(this.grid.getPadding(), this.grid.getPadding(), this.grid.getWidth(), this.grid.getHeight()+this.grid.getPadding());
         rectangle.setColor(Color.RED);
 
-        this.img = new Picture(this.grid.getPadding(), this.grid.getPadding(), "./resources/images/gameover.jpg");
+        this.img = new Picture(this.grid.getPadding(), this.grid.getPadding(), "resources/images/gameover.jpg");
 
     }
 

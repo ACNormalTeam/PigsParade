@@ -86,14 +86,14 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
 
         snakeBody = new ArrayList();
 
-        snakeHead = new Position(grid.getCols()/2, grid.getRows()/2, grid, "./resources/images/snake-head.png");
+        snakeHead = new Position(grid.getCols()/2, grid.getRows()/2, grid, "resources/images/snake-head.png");
         snakeHead.setColor(GridColor.BLUE);
         snakeHead.setDirection(currentDirection);
 
         snakeBody.add(snakeHead);
 
         for(int i = 1; i < 3; i++){
-            snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid, "./resources/images/snake-body.png"));
+            snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid, "resources/images/snake-body.png"));
         }
 
     }
@@ -118,7 +118,7 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
                                 snakeBody.get(snakeBody.size()-1).getCol(),
                                 snakeBody.get(snakeBody.size()-1).getRow(),
                                 grid,
-                                "./resources/images/snake-body.png"
+                                "resources/images/snake-body.png"
                         )
                 );
                 eatSound.play(true);
