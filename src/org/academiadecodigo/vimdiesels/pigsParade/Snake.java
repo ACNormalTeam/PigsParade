@@ -35,7 +35,6 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
     private GameOver gameover;
 
     private GridDirection currentDirection;
-    private CollisionDetector collisionDetector;
 
     private Food food;
 
@@ -95,7 +94,6 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
         for(int i = 1; i < 3; i++){
             snakeBody.add(new Position(snakeHead.getCol()-i, snakeHead.getRow(), grid, "resources/images/snake-body.png"));
         }
-
     }
 
     public void autoMove(int delay) throws InterruptedException {
@@ -127,7 +125,6 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
             }
 
             for (int i = snakeBody.size()-1; i >= 0; i--) {
-                //System.out.println("snake col=" + snakeBody.get(0).getCol());
                 if( i == 0 ){
                     snakeBody.get(i).moveInDirection(direction, 1);
                     break;
@@ -170,7 +167,6 @@ public class Snake implements KeyboardHandler, Iterable<GridPosition> {
         }
         return false;
     }
-
 
     public boolean foundBodyPart(){
 

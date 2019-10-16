@@ -28,7 +28,6 @@ public class Grid {
         this.gameStageBorderCells = gameStageBorderSize;
         this.gameStageBorderSize = gameStageBorderSize * CELL_SIZE;
 
-
     }
 
     public Grid(){
@@ -156,6 +155,5 @@ public class Grid {
     public int columnToX(int column) {
         return ( column * CELL_SIZE ) + PADDING;
     }
-
 
 }

@@ -16,7 +16,6 @@ public class Header {
     private static int scoreCounter;
     private static Text score;
 
-
     public Header(Grid grid, int heightCells){
     this.grid = grid;
     Header.heightCells = heightCells;
@@ -32,7 +31,6 @@ public class Header {
 
         score.setColor(Color.WHITE);
         score.draw();
-
 
     }
 

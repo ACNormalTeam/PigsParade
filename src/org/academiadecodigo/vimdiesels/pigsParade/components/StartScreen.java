@@ -14,7 +14,6 @@ import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
 public class StartScreen implements KeyboardHandler {
 
     Grid grid;
-    Picture startImage;
     Rectangle background;
 
     private Keyboard keyboard;
@@ -26,14 +25,10 @@ public class StartScreen implements KeyboardHandler {
     }
 
     public void init(){
-        //startImage = new Picture(0, 0,"./resources/images/");
         background = new Rectangle(grid.getPadding(), grid.getPadding(), grid.getWidth(), grid.getHeight()+grid.getPadding());
         background.setColor(Color.CYAN);
         background.fill();
 
-      /*  KeyboardEvent space = new KeyboardEvent();
-        space.setKey(KeyboardEvent.KEY_SPACE);
-        space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);*/
     }
 
     public void remove(){

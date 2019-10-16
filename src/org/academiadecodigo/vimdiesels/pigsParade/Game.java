@@ -1,21 +1,12 @@
 package org.academiadecodigo.vimdiesels.pigsParade;
 
-
-//import org.academiadecodigo.vimdiesels.pigsParade.components.GameStage;
-
-import org.academiadecodigo.bootcamp.Sound;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.vimdiesels.pigsParade.components.Header;
-import org.academiadecodigo.vimdiesels.pigsParade.components.StartScreen;
-import org.academiadecodigo.vimdiesels.pigsParade.food.Food;
 import org.academiadecodigo.vimdiesels.pigsParade.grid.Grid;
-
 
 public class Game {
 
@@ -26,8 +17,6 @@ public class Game {
     private Rectangle rectangle;
     private Picture img;
     private int countDown;
-
-
 
     public Game(int delay){
         this.delay = delay;
@@ -70,7 +59,6 @@ public class Game {
 
         start();
     }
-
 
     public void start() throws InterruptedException {
         snake.autoMove(this.delay);
